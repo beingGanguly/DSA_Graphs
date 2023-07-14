@@ -2,11 +2,11 @@
 #include<vector>
 using namespace std;
 
-
+class KosarajuAlgorithm {
 private:
     void dfs(int node,vector<vector<int>>&adj, vector<int>&vis, vector<int>&finishOrder){
         vis[node] = 1;
-        for(int it: ad[node]){
+        for(int it: adj[node]){
             if(!vis[it]){
                 dfs(it,adj,vis,finishOrder);
             }
@@ -18,7 +18,7 @@ private:
         vis[node] = 1;
         for(int it: adj[node]){
             if(!vis[it]){
-                dfs(it,adj,vis);
+                dfs2(it,adj,vis);
             }
         }
     }
@@ -38,9 +38,9 @@ public:
         vector<vector<int>>adjT(V);
         for(int i=0;i<V;i++){
             vis[i]=0;
-            for(int it:adj[i]{
+            for(int it:adj[i]){
                 adjT[it].push_back(i);
-            })
+            }
         }
 
         //Last dfs using the finish order
@@ -54,6 +54,28 @@ public:
         }
         return scc;
     }
+};
+
+int main() {
+    KosarajuAlgorithm algo;
+
+    int V = 6; // Number of vertices
+    vector<vector<int>> adj(V);
+
+    // Add edges to the adjacency list representation of the graph
+    adj[0].push_back(1);
+    adj[1].push_back(2);
+    adj[2].push_back(0);
+    adj[2].push_back(3);
+    adj[3].push_back(4);
+    adj[4].push_back(5);
+    adj[5].push_back(3);
+
+    int stronglyConnectedComponents = algo.kosaraju(V, adj);
+    cout << "Number of Strongly Connected Components: " << stronglyConnectedComponents << endl;
+
+    return 0;
+}
 
 
 
